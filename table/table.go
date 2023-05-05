@@ -366,6 +366,15 @@ func (r *Table) GetCursorValue() string {
 	return getStringFromOrdered(r.filteredRows[r.cursorIndexY][r.cursorIndexX])
 }
 
+// GetCursorValue returns the string of the cell under the cursor
+func (r *Table) GetValueOfColumnId(index int) string {
+	// handle 0 rows situation and when table is not active
+	if len(r.filteredRows) == 0 || r.cursorIndexX < 0 || r.cursorIndexY < 0 {
+		return ""
+	}
+	return getStringFromOrdered(r.filteredRows[r.cursorIndexY][index])
+}
+
 // AddRows add multiple rows, will return error on the first instance of a row that does not match the type set on table
 // will update rows only when there are no errors
 func (r *Table) AddRows(rows [][]any) (*Table, error) {
