@@ -368,7 +368,6 @@ func (r *Table) GetCursorValue() string {
 
 // GetCursorValue returns the string of the cell under the cursor
 func (r *Table) GetValueOfColumnId(index int) string {
-	// handle 0 rows situation and when table is not active
 	if len(r.filteredRows) == 0 || r.cursorIndexX < 0 || r.cursorIndexY < 0 {
 		return ""
 	}
